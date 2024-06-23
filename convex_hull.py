@@ -171,7 +171,7 @@ def convexHull(points, n):
         convex_hull_x.append(p.x)
         convex_hull_y.append(p.y)
         S.pop()
-    
+         
     return convex_hull_x, convex_hull_y
     
     #now stack has the output points, print contents of stack
@@ -180,9 +180,8 @@ def convexHull(points, n):
 def plot_convex_hull(all_x, all_y, convex_x, convex_y):
         
     plt.scatter(all_x, all_y, marker=".")
-    plt.plot(convex_x[-1], convex_y[-1], marker = "^")
-    plt.plot(convex_x, convex_y, marker='^', mfc='r', mec='r', ms=6, ls='--', c='b', lw=2, label= "Convex Hull Polygon")
-    plt.plot([convex_x[0],convex_x[-1]], [convex_y[0],convex_y[-1]], marker='^', mfc='r', mec='r', ms=6, ls='--', c='b', lw=2)
+    plt.plot(convex_x, convex_y, marker='.', mfc='r', mec='r', ms=6, ls='--', c='b', lw=2, label= "Convex Hull Polygon")
+    plt.plot([convex_x[0],convex_x[-1]], [convex_y[0],convex_y[-1]], marker='.', mfc='r', mec='r', ms=6, ls='--', c='b', lw=2)
     plt.plot()
     plt.legend()
     plt.xlabel("Easting (m)")
@@ -207,6 +206,16 @@ if __name__ == "__main__":
         i += 1
     
     convex_x, convex_y = convexHull(points, num_of_coords)
+    
+    convex_coords = []
+    i = 0
+    while i < len(convex_x):
+        
+        convex_coords.append((convex_x[i], convex_y[i]))
+        i+=1
+        
+    print(convex_coords)
+    
     plot_convex_hull(x, y, convex_x, convex_y)
     
         
